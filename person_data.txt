@@ -1,1 +1,68 @@
 
+import 'dart:io';
+
+// Define an interface
+abstract class Animal {
+  void makeSound();
+}
+
+// Implement the Animal interface
+class Dog implements Animal {
+  @override
+  void makeSound() {
+    print('Woof!');
+  }
+}
+
+// Extend the Dog class
+class Labrador extends Dog {
+  @override
+  void makeSound() {
+    print('Bark!');
+  }
+}
+
+// Class that represents a Person
+class Person {
+  String name;
+  int age;
+
+  Person(this.name, this.age);
+  
+  void displayInfo() {
+    print('Name: $name, Age: $age');
+  }
+}
+
+// Method to read data from a file and initialize a Person object
+Person readPersonFromFile(String filePath) {
+  var file = File(filePath);
+  List<String> lines = file.readAsLinesSync();
+  var data = lines[0].split(',');
+  var name = data[0];
+  var age = int.parse(data[1]);
+  return Person(name, age);
+}
+
+// Method that demonstrates the use of a loop
+void printNumbers(int n) {
+  for (var i = 1; i <= n; i++) {
+    print(i);
+  }
+}
+
+void main() {
+  // Demonstrate inheritance and interface implementation
+  var dog = Dog();
+  dog.makeSound(); // Output: Woof!
+
+  var labrador = Labrador();
+  labrador.makeSound(); // Output: Bark!
+
+  // Demonstrate reading data from a file and initializing a Person object
+  var person = readPersonFromFile('person_data.txt');
+  person.displayInfo();
+
+  // Demonstrate the use of a loop
+  printNumbers(5);
+}
